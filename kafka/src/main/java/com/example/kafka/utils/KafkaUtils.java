@@ -47,14 +47,32 @@ public class KafkaUtils {
         list.add("kafka");
         DescribeTopicsResult topicsResult = ac.describeTopics(list);
         final KafkaFuture<TopicDescription> kafka = topicsResult.values().get("kafka");
-        System.out.println(kafka.get().name());
+        System.out.println("topic name is "+kafka.get().name()+"---topic partition num is "+kafka.get().partitions().size());
     }
+
+    //对已有的topic修改partition
+    public static void addPartition(String topic,int num) throws ExecutionException, InterruptedException {
+        AdminClient ac = AdminClient.create(config());
+        Map<String, NewPartitions> map = new HashMap<>();
+        NewPartitions newPartitions = NewPartitions.increaseTo(5);
+        map.put("kafka",newPartitions);
+        ac.createPartitions(map).all().get();
+    }
+
+    public void getaaa(){
+
+    }
+
+
 
 
     public static void main(String[] args) throws Exception {
 //        createTopic();
 //        getTopicList();
         descTopic();
+
+//        addPartition("kafka",5);
     }
+
 
 }
