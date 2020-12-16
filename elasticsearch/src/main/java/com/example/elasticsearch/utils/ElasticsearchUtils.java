@@ -14,6 +14,7 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -67,6 +68,7 @@ public class ElasticsearchUtils {
 
     /**
      * 根据某个字段进行查询   返回mapping中的某些字段
+     *
      * @param index
      * @param field
      * @param result
@@ -80,7 +82,7 @@ public class ElasticsearchUtils {
         SearchSourceBuilder builder = new SearchSourceBuilder();
         MatchQueryBuilder query = QueryBuilders.matchQuery(field, result);
         builder.query(query);
-        request.source(builder);
+        builder.sort("timestamp", SortOrder.ASC);  //这个是加入排序字段
         request.source(builder);
 
         SearchResponse response = higeClient.search(request, RequestOptions.DEFAULT);
@@ -94,6 +96,7 @@ public class ElasticsearchUtils {
             Map<String, Object> sourceAsMap = hit.getSourceAsMap();
             System.out.println(sourceAsMap.get("info"));
             System.out.println(sourceAsMap.get("class"));
+            System.out.println(sourceAsMap.get("timestamp"));
         }
     }
 
@@ -102,7 +105,7 @@ public class ElasticsearchUtils {
 //        source("customer","_doc","5");
 //        higeClient.close();
 //        search("customer", 0, 10);
-        searchByfield("springboot","class","ERROR");
+        searchByfield("springboot", "level", "ERROR");
     }
 
 
