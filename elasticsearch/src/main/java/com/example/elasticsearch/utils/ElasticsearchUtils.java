@@ -36,6 +36,9 @@ public class ElasticsearchUtils {
         map.put("aaa", "bbb");
         IndexRequest request = new IndexRequest(index, type, id).source(map);
         final IndexResponse response = higeClient.index(request, RequestOptions.DEFAULT);
+
+        //异步执行相关
+//        higeClient.indexAsync();
         return response.getId();
     }
 
@@ -105,7 +108,7 @@ public class ElasticsearchUtils {
 //        source("customer","_doc","5");
 //        higeClient.close();
 //        search("customer", 0, 10);
-        searchByfield("springboot", "level", "ERROR");
+        searchByfield("springboot", "info", "a");
     }
 
 
