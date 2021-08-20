@@ -1,4 +1,4 @@
-package com.example.data_structure.structure.ZenRenLian;
+package com.example.data_structure.structure.zenrenlian;
 
 public class ZeRenLianMain {
 
