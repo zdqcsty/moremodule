@@ -1,3 +1,4 @@
+/*
 package com.example.akka_study.test;
 
 import akka.actor.testkit.typed.javadsl.TestKitJunitResource;
@@ -25,3 +26,4 @@ public class DeviceTest {
         assertEquals(Optional.empty(), response.value);
     }
 }
+*/

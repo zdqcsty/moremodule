@@ -13,7 +13,6 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
         final ByteBuf time = ctx.alloc().buffer(4); // (2)
         time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
 
-        System.out.println("hahahahha");
         final ChannelFuture f = ctx.writeAndFlush(time); // (3)
 
         f.addListener(new ChannelFutureListener() {

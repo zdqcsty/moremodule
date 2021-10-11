@@ -24,6 +24,7 @@ public class FileUploadClientHandler extends ChannelInboundHandlerAdapter {
         this.fileUploadFile = ef;
     }
 
+    //当前channel激活的时候的时候触发  优先于channelRead方法执行  （我的理解，只执行一次）
     public void channelActive(ChannelHandlerContext ctx) {
         try {
             System.out.println("********************************************************");
@@ -49,7 +50,7 @@ public class FileUploadClientHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof Integer) {
             start = (Integer) msg;
-            System.out.println(start+"++++++++++++++++++++++");
+            System.out.println(start + "++++++++++++++++++++++");
             if (start != -1) {
                 randomAccessFile = new RandomAccessFile(fileUploadFile.getFile(), "r");
                 randomAccessFile.seek(start);

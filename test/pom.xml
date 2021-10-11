@@ -55,7 +55,7 @@
             <artifactId>jdbc</artifactId>
             <version>2.12</version>
         </dependency>
-       <!-- <dependency>
+        <dependency>
             <groupId>com.bonc.xcloud</groupId>
             <artifactId>XCloudJDBC</artifactId>
             <exclusions>
@@ -73,7 +73,7 @@
                 </exclusion>
             </exclusions>
             <version>2.6.0</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
@@ -106,13 +106,34 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>2.9.1</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>2.9.1</version>
+            <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>java-testdata-generator</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.4</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -121,6 +142,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.example.test.HotCode</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
